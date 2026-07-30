@@ -6,3 +6,13 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- Disable diagnostics + autoformat for markdown buffers (marksman/markdownlint/prettier noise)
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("markdown_no_diag_format", { clear = true }),
+  pattern = { "markdown", "markdown.mdx" },
+  callback = function(ev)
+    vim.diagnostic.enable(false, { bufnr = ev.buf })
+    vim.b[ev.buf].autoformat = false
+  end,
+})
