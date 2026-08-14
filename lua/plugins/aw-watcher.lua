@@ -1,7 +1,7 @@
 return {
   "lowitea/aw-watcher.nvim",
-  -- Needs to track every buffer/window event for the whole session, same
-  -- reasoning as wakatime.lua's lazy = false — nothing lazy-loads this.
+  -- Needs to track every buffer/window event for the whole session --
+  -- nothing lazy-loads this.
   lazy = false,
   -- Repo is "aw-watcher.nvim" (hyphen) but the lua module is "aw_watcher"
   -- (underscore); spelling it out avoids relying on lazy.nvim's inference.
