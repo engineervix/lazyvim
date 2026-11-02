@@ -38,6 +38,10 @@ return {
         },
         sources = {
           explorer = {
+            -- close the explorer after opening a file (default: false)
+            jump = { close = true },
+            -- close the explorer when focus moves to another window (default: false)
+            auto_close = true,
             win = {
               list = {
                 keys = {
