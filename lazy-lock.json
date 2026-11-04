@@ -64,5 +64,6 @@
   "vim-dadbod-ui": { "branch": "master", "commit": "afd07819d8efcefc3317205b855ad4e3513b0011" },
   "vimtex": { "branch": "master", "commit": "3f96503904db6acdb7108cd93a9580dd41e88555" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
-  "yanky.nvim": { "branch": "main", "commit": "edcbe0f6d693b9e7860626094f886a2d79cfe63b" }
+  "yanky.nvim": { "branch": "main", "commit": "edcbe0f6d693b9e7860626094f886a2d79cfe63b" },
+  "yazi.nvim": { "branch": "main", "commit": "23105e0e9c644b7a52e711407922bf44999f8524" }
 }
