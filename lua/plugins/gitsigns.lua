@@ -1,5 +1,9 @@
 return {
   "lewis6991/gitsigns.nvim",
+  -- Floating hunk preview; LazyVim only maps the inline variant (<leader>ghp).
+  keys = {
+    { "<leader>ghP", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview Hunk" },
+  },
   -- Override the default LazyVim gitsigns options.
   -- `opts` here is merged (deep-extended) into LazyVim's own gitsigns
   -- spec, so existing keymaps (<leader>ghb, <leader>ghB, etc.) still work.
