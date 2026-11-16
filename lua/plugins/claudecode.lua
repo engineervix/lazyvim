@@ -29,8 +29,16 @@ return {
             -- Let kitty find this Neovim's pane by port; values are regexes, so anchor.
             "--focus-existing=env:CLAUDE_CODE_SSE_PORT=^" .. tostring(env.CLAUDE_CODE_SSE_PORT) .. "$",
           }
-          for k, v in pairs(env) do
+          -- The pane is spawned by the kitty server, not Neovim, so it would
+          -- miss VIRTUAL_ENV, PATH tweaks, direnv vars etc. Forward nvim's env.
+          -- Skip KITTY_* (kitty sets those per window).
+          local full = vim.tbl_extend("force", vim.fn.environ(), env)
+          for k, v in pairs(full) do
+            if k:sub(1, 6) == "KITTY_" then
+              goto continue
+            end
             vim.list_extend(args, { "--env", k .. "=" .. v })
+            ::continue::
           end
           return vim.list_extend(args, require("claudecode.utils").parse_command(cmd))
         end,
