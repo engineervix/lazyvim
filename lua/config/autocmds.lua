@@ -7,6 +7,13 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- Save on focus loss so buffers are clean when Claude (in the kitty pane) edits
+-- files; LazyVim's FocusGained checktime then reloads them silently.
+vim.api.nvim_create_autocmd("FocusLost", {
+  group = vim.api.nvim_create_augroup("autosave_on_focus_lost", { clear = true }),
+  command = "silent! wall",
+})
+
 -- Disable diagnostics + autoformat for markdown buffers (marksman/markdownlint/prettier noise)
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("markdown_no_diag_format", { clear = true }),
