@@ -7,6 +7,22 @@ return {
     -- The extra doesn't bind this for the Snacks explorer.
     { "<leader>as", "<cmd>ClaudeCodeTreeAdd<cr>", desc = "Add file", ft = "snacks_picker_list" },
   },
+  init = function()
+    -- focus_after_send can't reach an external pane, so focus it ourselves.
+    -- Fires once per file in a multi-file send; focus-window is idempotent.
+    vim.api.nvim_create_autocmd("User", {
+      group = vim.api.nvim_create_augroup("claudecode_kitty_focus", { clear = true }),
+      pattern = "ClaudeCodeSendComplete",
+      callback = function()
+        local port = require("claudecode").state.port
+        -- vim.system throws if kitty isn't on PATH; skip when not in kitty.
+        if not port or not vim.env.KITTY_LISTEN_ON or vim.fn.executable("kitty") == 0 then
+          return
+        end
+        vim.system({ "kitty", "@", "focus-window", "--match", "env:CLAUDE_CODE_SSE_PORT=^" .. port .. "$" })
+      end,
+    })
+  end,
   opts = {
     -- vim.fn.expand is required: kitty gets this as a literal argv entry.
     terminal_cmd = vim.fn.expand("~/.local/bin/claude"),
