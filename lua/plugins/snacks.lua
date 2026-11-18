@@ -6,14 +6,13 @@ return {
     "snacks.nvim",
     opts = {
       picker = {
-        -- show hidden + ignored files by default (<a-h>/<a-i>, H/I toggle them off).
-        -- sources inherit these unless they set their own (files does), so
-        -- files is repeated below. .git/.DS_Store stay excluded.
+        -- show hidden files by default (<a-h>/H toggles them off); ignored stays
+        -- off, toggle with <a-i>/I. sources inherit this unless they set their
+        -- own (files does), so files is repeated below. .git/.DS_Store stay excluded.
         -- explorer matches globs against absolute paths, hence "**/"
         hidden = true,
-        ignored = true,
         sources = {
-          files = { hidden = true, ignored = true, exclude = { ".git", ".DS_Store" } },
+          files = { hidden = true, exclude = { ".git", ".DS_Store" } },
           grep = { exclude = { ".git", ".DS_Store" } },
           grep_word = { exclude = { ".git", ".DS_Store" } },
           explorer = { exclude = { "**/.git", "**/.DS_Store" } },
