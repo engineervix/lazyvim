@@ -40,6 +40,8 @@ return {
             "@",
             "launch",
             "--location=vsplit",
+            -- splits layout: percent of width the new (Claude) pane takes.
+            "--bias=25",
             "--cwd=" .. LazyVim.root.git(),
             -- The launch job exits at once, so the plugin can't track the pane.
             -- Let kitty find this Neovim's pane by port; values are regexes, so anchor.
